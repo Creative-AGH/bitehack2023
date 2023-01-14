@@ -1,4 +1,21 @@
 :root {
+  --blue-bg-500: #ffffff;
+  --blue-bg-400: #f5f9fb;
+  --blue-bg-300: #adcfe2;
+  --blue-bg-200: #506d7d;
+  --blue-bg-100: #131618;
+
+  --blue-text-500: #131618;
+  --blue-text-400: #131618;
+  --blue-text-300: #131618;
+  --blue-text-200: #fff;
+  --blue-text-100: #fff;
+
+  --blue-bg-btn: var(--blue-bg-400);
+  --blue-text-btn: var(--blue-text-400);
+  --orange-bg-btn: #ff8c00;
+  --orange-text-btn: #fff;
+
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -7,9 +24,6 @@
   color-scheme: light dark;
   color: var(--fg);
   background-color: var(--bg);
-
-  --bg: #242424;
-  --fg: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -33,6 +47,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--blue-bg-100);
+  color: var(--blue-text-100);
 }
 
 h1 {
@@ -61,8 +77,19 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    --bg: #fff;
-    --fg: #242424;
+    --blue-bg-100: #ffffff;
+    --blue-bg-200: #f5f9fb;
+    --blue-bg-300: #adcfe2;
+    --blue-bg-400: #506d7d;
+    --blue-bg-500: #131618;
+
+    --blue-text-100: #131618;
+    --blue-text-200: #131618;
+    --blue-text-300: #131618;
+    --blue-text-400: #fff;
+    --blue-text-500: #fff;
+
+    --blue-text-btn: #fff;
   }
   a:hover {
     color: #747bff;
@@ -78,3 +105,12 @@ button:focus-visible {
   padding: 2rem;
   text-align: center;
 }
+
+img,
+svg {
+  max-width: 100%;
+}
+
+/* * {
+  outline: 1px solid red;
+} */

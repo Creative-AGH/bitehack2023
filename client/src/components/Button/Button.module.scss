@@ -1,0 +1,23 @@
+.button {
+  border: none;
+  border-radius: 5px;
+  padding: 1em 3em;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.blue {
+  background-color: var(--blue-bg-btn);
+  color: var(--blue-text-btn);
+}
+
+.orange {
+  background-color: var(--orange-bg-btn);
+  color: var(--orange-text-btn);
+}
