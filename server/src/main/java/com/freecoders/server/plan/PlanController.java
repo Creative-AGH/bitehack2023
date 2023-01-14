@@ -1,7 +1,7 @@
-package com.freecoders.server.controllers;
+package com.freecoders.server.plan;
 
 import com.freecoders.server.entites.Plan;
-import com.freecoders.server.services.PlanService;
+import com.freecoders.server.plan.dto.PlanDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,12 +16,12 @@ public class PlanController {
     private final PlanService planService;
 
     @GetMapping("/plan/getAllPlans")
-    public ResponseEntity<List<Plan>> getAllPlans() {
+    public ResponseEntity<List<PlanDto>> getAllPlans() {
         return ResponseEntity.ok().body(planService.getAllPlans());
     }
 
     @GetMapping("/plan/{planId}")
-    public ResponseEntity<Plan> getPlanById(@RequestParam Long planId) {
+    public ResponseEntity<PlanDto> getPlanById(@RequestParam Long planId) {
         return ResponseEntity.ok().body(planService.getPlanById(planId));
     }
 

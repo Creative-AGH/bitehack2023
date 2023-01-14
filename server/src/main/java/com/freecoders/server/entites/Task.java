@@ -10,7 +10,6 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //task ma date
     private String name;
     private String description;
 
