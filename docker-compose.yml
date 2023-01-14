@@ -1,0 +1,21 @@
+version: '3.0'
+
+services:
+  db:
+    image: mysql:8.0
+    ports:
+      - '3308:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    restart: always
+  backend:
+    build:
+      context: ./server/
+    ports:
+      - '8080:8080'
+    expose:
+      - '8080'
+    restart: always
