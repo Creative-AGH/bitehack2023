@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 @RequiredArgsConstructor
-public class AvabilityDto {
+public class AvailabilityDto {
 
     private LocalDateTime fromDate;
     private LocalDateTime toDate;

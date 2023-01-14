@@ -1,6 +1,6 @@
 package com.freecoders.server.avability;
 
-import com.freecoders.server.avability.dto.AvabilityDto;
+import com.freecoders.server.avability.dto.AvailabilityDto;
 import com.freecoders.server.avability.dto.AvailabilityMapper;
 import com.freecoders.server.entites.Availability;
 import com.freecoders.server.repository.AvabilityRepository;
@@ -18,9 +18,9 @@ public class AvailabilityService
     private final AvailabilityMapper availabilityMapper;
     
     @Transactional
-    public void addNewAvaibilityForUser(AvabilityDto avabilityDto)
+    public void addNewAvaibilityForUser(AvailabilityDto availabilityDto)
     {
-        Availability avability = availabilityMapper.mapAvabilityDtoToAvability(avabilityDto);
+        Availability avability = availabilityMapper.mapAvailabilityDtoToAvailability(availabilityDto);
         avabilityRepository.save(avability);
     }
 }

@@ -6,9 +6,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = AvailabilityMapper.class)
 public interface AvailabilityMapper {
-    @Mapping(target = "id", ignore = true)
     @Mapping(target = "fromDate", source = "fromDate")
     @Mapping(target = "toDate", source = "toDate")
-    @Mapping(target = "userId", source = "userId")
-    Availability mapAvabilityDtoToAvability(AvabilityDto avabilityDto);
+    Availability mapAvailabilityDtoToAvailability(AvailabilityDto availabilityDto);
 }
