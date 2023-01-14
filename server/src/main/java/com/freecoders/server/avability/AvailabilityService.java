@@ -3,7 +3,7 @@ package com.freecoders.server.avability;
 import com.freecoders.server.avability.dto.AvailabilityDto;
 import com.freecoders.server.avability.dto.AvailabilityMapper;
 import com.freecoders.server.entites.Availability;
-import com.freecoders.server.repository.AvabilityRepository;
+import com.freecoders.server.repository.AvailabilityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +14,13 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class AvailabilityService
 {
-    private final AvabilityRepository avabilityRepository;
+    private final AvailabilityRepository availabilityRepository;
     private final AvailabilityMapper availabilityMapper;
     
     @Transactional
     public void addNewAvaibilityForUser(AvailabilityDto availabilityDto)
     {
         Availability avability = availabilityMapper.mapAvailabilityDtoToAvailability(availabilityDto);
-        avabilityRepository.save(avability);
+        availabilityRepository.save(avability);
     }
 }

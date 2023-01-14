@@ -21,4 +21,7 @@ public class Account {
     @OneToMany
     List<Availability> availabilities;
 
+    @OneToMany
+    List<Plan> plan;
+
 }

@@ -9,11 +9,16 @@ import java.util.List;
 import java.util.Map;
 
 public class TimeService {
-    public static List<LocalDateTime> divideTasks(List<Availability> availabilities, int numTasks) {
+
+    public static List<LocalDateTime> divideTasks(List<Availability> availabilities, int numTasks, LocalDateTime deadline) {
+        LocalDateTime now = LocalDateTime.now();
         List<LocalDateTime> startTimes = new ArrayList<>();
         for (Availability availability : availabilities) {
-            startTimes.add(availability.getFromDate());
+            if (availability.getFromDate().isAfter(now) && availability.getFromDate().isBefore(deadline)) {
+                startTimes.add(availability.getFromDate());
+            }
         }
+
         if (startTimes.size() >= numTasks) {
             return startTimes.subList(0, numTasks);
         } else {
@@ -44,11 +49,13 @@ public class TimeService {
         return false;
     }
 
-    public static List<LocalDateTime> divideTasksWithUniqueStartTimes(List<Availability> availabilities, int numTasks,LocalDateTime deadline) {
-        List<LocalDateTime> tasks = divideTasks(availabilities, numTasks);
+    public static List<LocalDateTime> divideTasksWithUniqueStartTimes(List<Availability> availabilities, int numTasks, LocalDateTime deadline) {
+        List<LocalDateTime> tasks = divideTasks(availabilities, numTasks, deadline);
         while (checkForOverlappingTasks(tasks)) {
-            tasks = divideTasks(availabilities, numTasks);
+            tasks = divideTasks(availabilities, numTasks, deadline);
         }
         return tasks;
     }
+
+
 }
