@@ -2,10 +2,8 @@ package com.freecoders.server.entites;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,5 +17,7 @@ public class Account {
     @Enumerated
     Role role;
 
+    @OneToMany
+    List<Availability> availabilities;
 
 }
