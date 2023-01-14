@@ -18,38 +18,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @Data
 public class AiController {
+    private final AiService aiService;
 
-    @Value("${openai.apiKey}")
-    private String token;
-    @Value("${openai.timeout}")
-    private int timeout;
-    @Value("${openai.maxTokens}")
-    private int maxTokens;
-    private OpenAiService openAiService;
-    @PostConstruct
-    public void init() {
-        openAiService = new OpenAiService(token, timeout);
-    }
 
-    private String splitIntoSmallerParts(String givenPrompt)
-    {
-        return new StringBuilder()
-                .append("Podziel na mniejsze podproblemy i wypisz je od pauz :")
-                .append(givenPrompt).toString();
-    }
     @PostMapping("/createLearningPlanWithAi")
     public String getAiResponse(@RequestBody PromptWithEstimatedLearningTime promptWithEstimatedLearningTime) {
 
-        CompletionRequest completionRequest = CompletionRequest.builder()
-                .model("text-davinci-003")
-                .prompt(splitIntoSmallerParts("Napisz rozprawkę na temat nauki w czasach pandemii"))
-                .maxTokens(maxTokens)
-                .temperature(0.5)
-                .echo(true)
-                .build();
 //        return service.complete(completionRequest).getChoices().get(0).getText();
 //        System.out.println(service.createCompletion(completionRequest).getChoices());
-        List<CompletionChoice> choiceList = openAiService.createCompletion(completionRequest).getChoices();
+        List<CompletionChoice> choiceList = aiService.divideInToSmallerTasks(promptWithEstimatedLearningTime.getPrompt());
         choiceList.forEach(System.out::println);
 
         String[] singleResponseTable= choiceList.stream().findFirst().map(CompletionChoice::getText)
@@ -59,6 +36,10 @@ public class AiController {
 //                .map(CompletionChoice::toString).findFirst().orElse("No response");
 
         for (String s : singleResponseTable) {
+
+            //TODO Add to task as a question to TASK
+            //TODO Add to database PLAN with tasks
+            //TODO Add to task Dates generated from timeService by using divideTasksWithUniqueStartTimes with actual Timetable
             System.out.println();
             System.out.println(s);
         }

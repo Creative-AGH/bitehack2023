@@ -44,7 +44,7 @@ public class TimeService {
         return false;
     }
 
-    public static List<LocalDateTime> divideTasksWithUniqueStartTimes(List<Availability> availabilities, int numTasks) {
+    public static List<LocalDateTime> divideTasksWithUniqueStartTimes(List<Availability> availabilities, int numTasks,LocalDateTime deadline) {
         List<LocalDateTime> tasks = divideTasks(availabilities, numTasks);
         while (checkForOverlappingTasks(tasks)) {
             tasks = divideTasks(availabilities, numTasks);
