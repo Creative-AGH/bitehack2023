@@ -1,17 +1,28 @@
 package com.freecoders.server.ai.comunication;
 
+import com.freecoders.server.TimeService;
+import com.freecoders.server.entites.Account;
+import com.freecoders.server.entites.Availability;
+import com.freecoders.server.entites.Plan;
+import com.freecoders.server.entites.Task;
+import com.freecoders.server.repository.AccountRepository;
+import com.freecoders.server.repository.PlanRepository;
+import com.freecoders.server.repository.TaskRepository;
 import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionChoice;
 import com.theokanning.openai.completion.CompletionRequest;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,8 +30,11 @@ import java.util.List;
 @Data
 public class AiController {
     private final AiService aiService;
+    private final AccountRepository accountRepository;
+    private final PlanRepository planRepository;
+    private final TaskRepository taskRepository;
 
-
+@Transactional
     @PostMapping("/createLearningPlanWithAi")
     public String getAiResponse(@RequestBody PromptWithEstimatedLearningTime promptWithEstimatedLearningTime) {
 
@@ -35,14 +49,28 @@ public class AiController {
         System.out.println("-----------------");
 //                .map(CompletionChoice::toString).findFirst().orElse("No response");
 
-        for (String s : singleResponseTable) {
+        LocalDateTime deadline = promptWithEstimatedLearningTime.getDeadline();
+        int estimatedLearningTime = promptWithEstimatedLearningTime.getEstimatedLearningTime();
 
-            //TODO Add to task as a question to TASK
-            //TODO Add to database PLAN with tasks
-            //TODO Add to task Dates generated from timeService by using divideTasksWithUniqueStartTimes with actual Timetable
-            System.out.println();
-            System.out.println(s);
+        Account adminAccount = accountRepository.findById(1L).get();
+        List<Availability> availabilities = adminAccount.getAvailabilities();
+        List<LocalDateTime> localDateTimes;
+        Plan plan = new Plan();
+        List<Task> tasks = new ArrayList<>();
+        localDateTimes = TimeService.divideTasks(availabilities, singleResponseTable.length, deadline);
+        for (int i=0; i<singleResponseTable.length; i++) {
+            Task task = new Task();
+            task.setQuestion(singleResponseTable[i]);
+            task.setTaskDateTime(localDateTimes.get(i)); // here we get the date and time for each task
+            tasks.add(task);
+            System.out.println(singleResponseTable[i]);
+            taskRepository.save(task);
         }
+        plan.setTasks(tasks);
+        adminAccount.getPlan().add(plan);
+        planRepository.save(plan);
+        accountRepository.save(adminAccount);
+
         return "dziala";
     }
 
