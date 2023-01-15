@@ -14,4 +14,4 @@ RUN npm install && \
     npm cache clean -f && \
     npm install -g serve
 CMD [ "serve", "-s", "build" ]
-EXPOSE 3000
+EXPOSE 5173
