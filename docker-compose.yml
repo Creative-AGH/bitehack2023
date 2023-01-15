@@ -11,7 +11,7 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: userpassword
     restart: always
-  backend:
+  back-end:
     build:
       context: ./server/
     ports:
