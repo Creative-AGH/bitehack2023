@@ -12,10 +12,10 @@ public class AskAiController {
     private final AskAiService askAiService;
 
     @PostMapping("/askai")
-    public ResponseEntity<?> askAi(@RequestBody ResponseTaskDto responseTaskDto) {
-        askAiService.askAiIfIMCorrect(responseTaskDto);
+    public ResponseEntity<?> askAi(@RequestBody RequestTaskDto requestTaskDto) {
+        System.out.println("askAi: " + requestTaskDto);
+        return ResponseEntity.ok(askAiService.askAiIfIMCorrect(requestTaskDto));
 
-        return ResponseEntity.ok("Hello");
     }
 
 }
