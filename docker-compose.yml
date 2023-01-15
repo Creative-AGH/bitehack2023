@@ -1,7 +1,7 @@
 version: '3.0'
 
 services:
-  db:
+  database-mysql:
     image: mysql:8.0
     ports:
       - '3308:3306'
@@ -10,6 +10,7 @@ services:
       MYSQL_DATABASE: test
       MYSQL_USER: user
       MYSQL_PASSWORD: userpassword
+    restart: always
   backend:
     build:
       context: ./server/
@@ -17,3 +18,6 @@ services:
       - '8080:8080'
     expose:
       - '8080'
+    restart: always
+    depends_on:
+        - database-mysql
