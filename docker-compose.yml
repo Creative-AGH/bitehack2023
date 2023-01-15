@@ -1,23 +1,23 @@
 version: '3.0'
 
 services:
-  database-mysql:
-    image: mysql:8.0
-    ports:
-      - '3309:3306'
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: test
-      MYSQL_USER: user
-      MYSQL_PASSWORD: userpassword
-    restart: always
+ # database-mysql:
+  #  image: mysql:8.0
+   # ports:
+    #  - '3309:3306'
+    #environment:
+     # MYSQL_ROOT_PASSWORD: root
+     # MYSQL_DATABASE: test
+     # MYSQL_USER: user
+     # MYSQL_PASSWORD: userpassword
+    #restart: always
   back-end:
     build:
       context: ./server/
     ports:
-      - '8080:8080'
+      - '8086:8086'
     expose:
-      - '8080'
+      - '8086'
     restart: always
    # depends_on:
     #    - database-mysql
