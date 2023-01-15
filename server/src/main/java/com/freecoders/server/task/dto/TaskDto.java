@@ -9,8 +9,6 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class TaskDto {
     private  Long id;
-    private  String name;
-    private  String description;
     private  LocalDateTime taskDateTime;
     private  String promptContext;
     private  String sentence;

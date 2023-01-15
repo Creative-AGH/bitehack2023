@@ -54,9 +54,6 @@ public class StartAndTestThingsSeed {
     private void createTestPlanAndTasks() {
         if(planRepository.count() == 0) {
             Task task = new Task();
-            task.setName("task1");
-            task.setDescription("task desc 1");
-
             Plan plan = new Plan();
             plan.setName("plan1");
             plan.setDescription("plan desc 1");
