@@ -50,11 +50,11 @@ const Message = ({ message, isUser }: IMessage) => {
 const Chat = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<IMessage[]>([]);
-  const [inputDisabled, setInputDisabled] = useState(true);
+  const [inputDisabled, setInputDisabled] = useState(false);
 
   const sendMessage = async () => {
     if (message === "") return;
-    const result = await axios.post(`${API_URL}/askai`, {
+    const result = await axios.post(`${API_URL}askai`, {
       id: 2137,
       myAnswer: message,
       question: localStorage.getItem("question"),
