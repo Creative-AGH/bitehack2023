@@ -24,7 +24,7 @@ import org.springframework.security.web.session.DisableEncodeUrlFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 @Slf4j
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 

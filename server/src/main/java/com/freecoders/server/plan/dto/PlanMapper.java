@@ -23,12 +23,12 @@ public interface PlanMapper {
         for (int i = 0; i < tasks.size(); i++) {
             TaskDto taskDto = new TaskDto();
             taskDto.setId(tasks.get(i).getId());
-            taskDto.setName(tasks.get(i).getName());
-            taskDto.setDescription(tasks.get(i).getDescription());
             taskDto.setTaskDateTime(tasks.get(i).getTaskDateTime());
             taskDto.setPromptContext(tasks.get(i).getPromptContext());
+            taskDto.setSentence(tasks.get(i).getSentence());
             taskDto.setQuestion(tasks.get(i).getQuestion());
             taskDtos.add(taskDto);
+
         }
         return taskDtos;
     }
