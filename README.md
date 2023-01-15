@@ -2,9 +2,9 @@
 ### Bellow is a link to figma UI/UX design
 ### https://www.figma.com/file/rpnKSE8JxYL5BoRU5Q7KBX/projekt?node-id=0%3A1&t=BTdXaXDRa5iClj7I-1
 
-![](../../../../../../../../../Downloads/322030029_694329689102616_3127417955559998841_n.png)
-![](../../../../../../../../../Downloads/321927050_889425202191071_8025042172396716225_n.png)
-![](../../../../../../../../../Downloads/322027611_501161245489850_6193674798419151469_n.png)
+![](../../Downloads/322030029_694329689102616_3127417955559998841_n.png)
+![](../../Downloads/321927050_889425202191071_8025042172396716225_n.png)
+![](../../Downloads/322027611_501161245489850_6193674798419151469_n.png)
 
 ## About
 The project was created for bitehack2023 to resolve real live problems.
