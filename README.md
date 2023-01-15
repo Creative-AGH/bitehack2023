@@ -29,6 +29,11 @@ Current project authors are:
 Our main goal is to create modern and advanced application which can be used easily to ask 
 questions and get answers from our app.
 
+Backend is deployed at:
+http://192.166.219.13:8000
+and /swagger-ui.html is present as UI 
+Frontend is deployed at: 
+http://192.166.219.13:5173
 ---
 ## Current technology that we are using:
 - Java 17
