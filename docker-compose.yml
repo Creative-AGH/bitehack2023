@@ -19,5 +19,5 @@ services:
     expose:
       - '8080'
     restart: always
-    depends_on:
-        - database-mysql
+   # depends_on:
+    #    - database-mysql
