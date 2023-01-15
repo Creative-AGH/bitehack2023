@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Docker-Compose-Up') {
             steps {
-                sh "docker-compose up --detach --build"
+                sh "docker-compose --env-file==/root/.env up --detach --build"
             }
         }
     }
