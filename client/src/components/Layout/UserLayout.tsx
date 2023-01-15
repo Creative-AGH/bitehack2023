@@ -22,21 +22,10 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
 const isLoggedIn = true;
 
-const LinksWithNoUser = [
-  {
-    name: "Zaloguj się",
-    path: "/login",
-  },
-  {
-    name: "Zarejestruj się",
-    path: "/register",
-  },
-];
-
 const LinksWithUser = [
   {
     name: "Moje plany",
-    path: "/plan",
+    path: "/plans",
   },
   {
     name: "Dodaj zasób",
@@ -70,9 +59,10 @@ const NavLink = ({ name, path }: INavLink) => (
 
 export interface IContent {
   children: ReactNode;
+  isInCenter: boolean;
 }
 
-const Content = ({ children }: IContent) => {
+const Content = ({ children, isInCenter }: IContent) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -95,13 +85,9 @@ const Content = ({ children }: IContent) => {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              {isLoggedIn
-                ? LinksWithUser.map(({ name, path }) => (
-                    <NavLink key={name} name={name} path={path} />
-                  ))
-                : LinksWithNoUser.map(({ name, path }) => (
-                    <NavLink key={name} name={name} path={path} />
-                  ))}
+              {LinksWithUser.map(({ name, path }) => (
+                <NavLink key={name} name={name} path={path} />
+              ))}
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
@@ -121,10 +107,11 @@ const Content = ({ children }: IContent) => {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
+                <MenuItem>Ustawienia</MenuItem>
+                <MenuItem>Pomoc</MenuItem>
+                <MenuItem>Regulami</MenuItem>
                 <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                <MenuItem color="red">Wyloguj</MenuItem>
               </MenuList>
             </Menu>
           </Flex>
@@ -133,21 +120,16 @@ const Content = ({ children }: IContent) => {
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-              {isLoggedIn
-                ? LinksWithNoUser.map(({ name, path }) => (
-                    <NavLink key={name} name={name} path={path} />
-                  ))
-                : LinksWithUser.map(({ name, path }) => (
-                    <NavLink key={name} name={name} path={path} />
-                  ))}
+              {LinksWithUser.map(({ name, path }) => (
+                <NavLink key={name} name={name} path={path} />
+              ))}
             </Stack>
           </Box>
         ) : null}
       </Box>
       <Box
         display="grid"
-        placeItems="center"
-        placeContent="center"
+        placeItems={isInCenter ? "center" : "flex-start"}
         minHeight="calc(100vh - 64px)"
       >
         {children}
@@ -160,9 +142,9 @@ export interface IUserLayout {
   isInCenter?: boolean;
 }
 
-const UserLayout = () => {
+const UserLayout = ({ isInCenter }: IUserLayout) => {
   return (
-    <Content>
+    <Content isInCenter={isInCenter || false}>
       <Outlet />
     </Content>
   );

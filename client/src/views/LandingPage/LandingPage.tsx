@@ -17,10 +17,8 @@ const LandingPage = () => {
 
   return (
     <Box
-      bg="var(--blue-bg-200)"
       w="100%"
       p={4}
-      color="var(--blue-text-200)"
       justifyContent="center"
       alignItems="center"
       display="flex"
@@ -28,7 +26,7 @@ const LandingPage = () => {
       textAlign="center"
     >
       <Slide page={page} />
-      <Button color="blue" type="link" path="/login" value="Zaczynajmy!" />
+      <Button color="blue" type="link" path="/plans" value="Zaczynajmy!" />
     </Box>
   );
 };
