@@ -1,15 +1,15 @@
 :root {
-  --blue-bg-500: #ffffff;
-  --blue-bg-400: #f5f9fb;
+  --blue-bg-100: #ffffff;
+  --blue-bg-200: #f5f9fb;
   --blue-bg-300: #adcfe2;
-  --blue-bg-200: #506d7d;
-  --blue-bg-100: #131618;
+  --blue-bg-400: #506d7d;
+  --blue-bg-500: #131618;
 
-  --blue-text-500: #131618;
-  --blue-text-400: #131618;
+  --blue-text-100: #131618;
+  --blue-text-200: #131618;
   --blue-text-300: #131618;
-  --blue-text-200: #fff;
-  --blue-text-100: #fff;
+  --blue-text-400: #fff;
+  --blue-text-500: #fff;
 
   --blue-bg-btn: var(--blue-bg-400);
   --blue-bg-btn-hover: var(--blue-bg-500);
