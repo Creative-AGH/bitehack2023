@@ -17,3 +17,10 @@ services:
       - '8080:8080'
     expose:
       - '8080'
+  frontend:
+    build:
+      context: ./client/
+    ports:
+      - '3000:3000'
+    expose:
+      - '3000'

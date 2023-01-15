@@ -4,8 +4,11 @@ import com.freecoders.server.security.JsonObjectAuthenticationFilter;
 import com.freecoders.server.security.JwtAuthorizationFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.core.Ordered;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,9 +20,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.session.DisableEncodeUrlFilter;
+import org.springframework.web.cors.CorsConfiguration;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 @Slf4j
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -51,13 +56,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     {
         return new BCryptPasswordEncoder();
     }
+
+//    @Bean
+//    public FilterRegistrationBean<NullCorsFilter> nullCorsFilter() {
+//        FilterRegistrationBean<NullCorsFilter> registrationBean = new FilterRegistrationBean<>();
+//        registrationBean.setFilter(new NullCorsFilter());
+//        registrationBean.addUrlPatterns("/*");
+//        registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+//        return registrationBean;
+//    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         try
         {
             http
                     .csrf().disable()
-                    .cors().disable()
+                    .cors().and().cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
+                    .and()
+//                    .cors().disable()
                     .authorizeRequests()
 //                .mvcMatchers("/**").permitAll()
 //                .mvcMatchers("/admin/**").hasRole("ADMIN")
@@ -65,12 +82,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .mvcMatchers("/changePassword").hasAnyRole("USER","ADMIN")
                     .anyRequest().permitAll()
                     .and()
-                    .formLogin().disable().cors()
-                    .and()
+//                    .formLogin().disable().cors()
+//                    .and()
                     .headers().frameOptions().disable()
                     .and()
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 1
                     .and()
+//                    .addFilterBefore(new NullCorsFilter(), DisableEncodeUrlFilter.class)
+//                    .addFilter(new NullCorsFilter())
                     .addFilter(authenticationFilter())
                     .addFilter(new JwtAuthorizationFilter(authenticationManager(), userDetailsService, secret)) // 2
                     .exceptionHandling()
