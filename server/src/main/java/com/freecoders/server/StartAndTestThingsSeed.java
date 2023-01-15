@@ -37,16 +37,52 @@ public class StartAndTestThingsSeed {
             availability1.setToDate(LocalDateTime.now().plusDays(3));
 
             Availability availability2 = new Availability();
-            availability2.setFromDate(LocalDateTime.now().plusDays(5));
-            availability2.setToDate(LocalDateTime.now().plusDays(7));
+            availability2.setFromDate(LocalDateTime.now().plusDays(5).plusDays(2));
+            availability2.setToDate(LocalDateTime.now().plusDays(7).plusDays(2));
+
+            Availability availability3 = new Availability();
+            availability3.setFromDate(LocalDateTime.now().plusDays(5).plusDays(4));
+            availability3.setToDate(LocalDateTime.now().plusDays(7).plusDays(4));
+
+            Availability availability4 = new Availability();
+            availability4.setFromDate(LocalDateTime.now().plusDays(5).plusDays(6));
+            availability4.setToDate(LocalDateTime.now().plusDays(7).plusDays(6));
+
+            Availability availability5 = new Availability();
+            availability5.setFromDate(LocalDateTime.now().plusDays(5).plusDays(10));
+            availability5.setToDate(LocalDateTime.now().plusDays(7).plusDays(10));
+
+            Availability availability6 = new Availability();
+            availability6.setFromDate(LocalDateTime.now().plusDays(5).plusDays(12));
+            availability6.setToDate(LocalDateTime.now().plusDays(7).plusDays(12));
+
+            Availability availability7 = new Availability();
+            availability7.setFromDate(LocalDateTime.now().plusDays(5).plusDays(15));
+            availability7.setToDate(LocalDateTime.now().plusDays(7).plusDays(15));
+
+            Availability availability8 = new Availability();
+            availability8.setFromDate(LocalDateTime.now().plusDays(5).plusDays(19));
+            availability8.setToDate(LocalDateTime.now().plusDays(7).plusDays(19));
 
             List<Availability> availabilities = new ArrayList<>();
             availabilities.add(availability1);
             availabilities.add(availability2);
+            availabilities.add(availability3);
+            availabilities.add(availability4);
+            availabilities.add(availability5);
+            availabilities.add(availability6);
+            availabilities.add(availability7);
+            availabilities.add(availability8);
 
             account.setAvailabilities(availabilities);
             availabilityRepository.save(availability1);
             availabilityRepository.save(availability2);
+            availabilityRepository.save(availability3);
+            availabilityRepository.save(availability4);
+            availabilityRepository.save(availability5);
+            availabilityRepository.save(availability6);
+            availabilityRepository.save(availability7);
+            availabilityRepository.save(availability8);
             accountRepository.save(account);
         }
     }
