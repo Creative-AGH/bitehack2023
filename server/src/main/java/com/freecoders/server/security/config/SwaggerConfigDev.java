@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.Collections;
 import java.util.List;
 
-@Profile("dev")
+//@Profile({"dev","default","prod"})
 @EnableSwagger2
 @Configuration
 public class SwaggerConfigDev {
