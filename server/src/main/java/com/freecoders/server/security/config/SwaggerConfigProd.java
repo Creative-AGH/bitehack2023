@@ -8,18 +8,18 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-@Profile("prod")
-@EnableSwagger2
-@Configuration
+//@Profile("prod")
+//@EnableSwagger2
+//@Configuration
 public class SwaggerConfigProd {
 
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.freecoders.registerstartupproject"))
-                .paths(PathSelectors.regex("^(?!/(error).*$).*$"))
-                .build()
-                .enable(false);
-    }
+//    @Bean
+//    public Docket api() {
+//        return new Docket(DocumentationType.SWAGGER_2)
+//                .select()
+//                .apis(RequestHandlerSelectors.basePackage("com.freecoders.registerstartupproject"))
+//                .paths(PathSelectors.regex("^(?!/(error).*$).*$"))
+//                .build()
+//                .enable(false);
+//    }
 }
