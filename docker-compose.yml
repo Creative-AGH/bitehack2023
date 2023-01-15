@@ -13,11 +13,11 @@ services:
     restart: always
   back-end:
     build:
-      context: ./server/
+      context: ./server
     ports:
-      - '8080:8080'
+      - '8085:8080'
     expose:
-      - '8080'
+      - '8085'
     restart: always
    # depends_on:
     #    - database-mysql
