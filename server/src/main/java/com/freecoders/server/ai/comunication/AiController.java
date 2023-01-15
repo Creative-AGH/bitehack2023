@@ -59,7 +59,7 @@ public class AiController {
         List<LocalDateTime> localDateTimes;
         Plan plan = new Plan();
         List<Task> tasks = new ArrayList<>();
-        localDateTimes = TimeService.divideTasks(availabilities, singleResponseTable.length, deadline);
+        localDateTimes = TimeService.divideTasksWithUniqueStartTimes(availabilities, singleResponseTable.length, deadline);
         for (int i = 0; i < singleResponseTable.length; i++) {
             Task task = new Task();
             task.setQuestion(singleResponseTable[i]);

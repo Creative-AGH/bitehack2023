@@ -16,6 +16,7 @@ public interface PlanMapper {
     @Mapping(target = "name", source = "name")
     @Mapping(target = "description", source = "description")
     @Mapping(target = "tasksDto", source = "tasks")
+    @Mapping(target = "deadline", source = "deadline")
     PlanDto mapPlanToPlanDto(Plan plan);
 
     default List<TaskDto> mapTasksToTasksDto(List<Task> tasks) {

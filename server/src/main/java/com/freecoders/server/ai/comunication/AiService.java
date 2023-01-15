@@ -57,7 +57,7 @@ public class AiService {
                 .model("text-davinci-003")
                 .prompt(changeTaskToQuestion(task))
                 .maxTokens(maxTokens)
-                .temperature(0.5)
+                .temperature(0.2)
                 .echo(true)
                 .build();
         return openAiService.createCompletion(completionRequest).getChoices();
@@ -67,7 +67,7 @@ public class AiService {
                 .model("text-davinci-003")
                 .prompt(splitIntoSmallerParts(prompt))
                 .maxTokens(maxTokens)
-                .temperature(0.5)
+                .temperature(0.2)
                 .echo(true)
                 .build();
         return openAiService.createCompletion(completionRequest).getChoices();
@@ -78,7 +78,7 @@ public class AiService {
                 .model("text-davinci-003")
                 .prompt(checkIfGivenAnswerIsCorrect(new String(requestTaskDto.getQuestion())))
                 .maxTokens(maxTokens)
-                .temperature(0.5)
+                .temperature(0.2)
                 .echo(true)
                 .build();
         System.out.println("PROMT = " + requestTaskDto.getQuestion());
@@ -92,7 +92,7 @@ public class AiService {
                 .model("text-davinci-003")
                 .prompt(splitIntoSmallerParts(prompt))
                 .maxTokens(maxTokens)
-                .temperature(0.5)
+                .temperature(0.2)
                 .echo(true)
                 .build();
         return openAiService.createCompletion(completionRequest).getChoices();
@@ -117,7 +117,7 @@ public class AiService {
                 .model("text-davinci-003")
                 .prompt(tellMeWhyIWasIncorrect(requestTaskDto.getQuestion(), mojaOdpowiedz))
                 .maxTokens(maxTokens)
-                .temperature(0.5)
+                .temperature(0.2)
                 .echo(true)
                 .build();
         return openAiService.createCompletion(completionRequest).getChoices();
