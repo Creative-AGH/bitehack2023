@@ -18,7 +18,7 @@ services:
       - '8086:8086'
     expose:
       - '8086'
-    restart: always
+#    restart: always
 
    # depends_on:
     #    - database-mysql
