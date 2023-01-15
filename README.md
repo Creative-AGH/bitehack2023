@@ -30,7 +30,7 @@ Our main goal is to create modern and advanced application which can be used eas
 questions and get answers from our app.
 
 Backend is deployed at:
-http://192.166.219.13:8000
+http://192.166.219.13:8080
 and /swagger-ui.html is present as UI 
 Frontend is deployed at: 
 http://192.166.219.13:5173
