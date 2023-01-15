@@ -1,10 +1,10 @@
 pipeline {
     agent any
-
-    stages {
         environment {
             $OPENAI_API_KEY    = 'xDDDDDDDDDDDDDDD'
         }
+    stages {
+
         stage('Build') {
             steps {
                 echo 'Building..'
