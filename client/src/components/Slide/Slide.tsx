@@ -1,5 +1,8 @@
 import styles from "./Slide.module.scss";
 import "./Slide.css";
+
+import { Text, Heading } from "@chakra-ui/react";
+
 export interface ISlide {
   page: number;
 }
@@ -701,16 +704,22 @@ const Slide = ({ page }: ISlide) => {
         )}
       </div>
       <div className={styles.slideContent}>
-        <h1 className={styles.slideContentTitle}>
+        <Heading
+          as="h1"
+          size="2xl"
+          className={styles.slideContentTitle}
+          mt="2rem"
+          mb="1rem"
+        >
           {page === 1 ? "Krok 1" : page === 2 ? "kROK 2" : "KROK 3"}
-        </h1>
-        <p className={styles.slideContentText}>
+        </Heading>
+        <Text className={styles.slideContentText} maxWidth="60ch">
           {page === 1
             ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eget aliquam nisl nisl eu nisl. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eget aliquam nisl nisl eu nisl."
             : page === 2
             ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eget aliquam nisl nisl eu nisl. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eget aliquam nisl nisl eu nisl."
             : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eget aliquam nisl nisl eu nisl. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eget aliquam nisl nisl eu nisl."}
-        </p>
+        </Text>
       </div>
     </div>
   );

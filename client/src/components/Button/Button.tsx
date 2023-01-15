@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { Link } from "react-router-dom";
 
 export interface IButton {
-  color: "blue" | "white";
+  color: "blue" | "orange";
   type: "link" | "input";
   value: string;
   path?: string;

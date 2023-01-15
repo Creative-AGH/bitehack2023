@@ -3,6 +3,8 @@ import styles from "./LandingPage.module.scss";
 import Slide from "../../components/Slide/Slide";
 import Button from "../../components/Button/Button";
 
+import { Box } from "@chakra-ui/react";
+
 const LandingPage = () => {
   const [page, setPage] = useState(1);
 
@@ -14,10 +16,20 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className={styles.wrapper}>
+    <Box
+      bg="var(--blue-bg-200)"
+      w="100%"
+      p={4}
+      color="var(--blue-text-200)"
+      justifyContent="center"
+      alignItems="center"
+      display="flex"
+      flexDirection="column"
+      textAlign="center"
+    >
       <Slide page={page} />
       <Button color="blue" type="link" path="/login" value="Zaczynajmy!" />
-    </div>
+    </Box>
   );
 };
 
