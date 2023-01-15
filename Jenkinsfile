@@ -22,7 +22,6 @@ pipeline {
         }
         stage('Docker-Compose-Up') {
             steps {
-                echo "$OPENAI_API_KEY"
                 sh "docker-compose up --detach --build"
             }
         }
