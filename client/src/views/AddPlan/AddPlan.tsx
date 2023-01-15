@@ -1,6 +1,6 @@
-import styles from "./AddPlan.module.scss";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { API_URL } from "../../constants";
 
 import {
   FormErrorMessage,
@@ -8,7 +8,6 @@ import {
   FormControl,
   Button,
   Heading,
-  Text,
   Textarea,
   Box,
   Input,
@@ -21,14 +20,18 @@ const AddPlan = () => {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  function onSubmit(values: any) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve(true);
-      }, 3000);
-    });
-  }
+  const date = new Date();
+  date.setDate(date.getDate() + 7);
+
+  const onSubmit = async (values: any) => {
+    values.deadline = new Date(values.deadline).toISOString();
+    await axios
+      .post(API_URL + "createLearningPlanWithAi", values)
+      .then((result) => {
+        localStorage.setItem("question", result.data.tasksDto[0].question);
+        window.location.href = "/chat";
+      });
+  };
 
   return (
     <Box
@@ -145,7 +148,7 @@ Protisty zdolne są do odbioru bodźców zewnętrznych oraz reagowania na nie. O
                 value: new Date().toISOString().split("T")[0],
                 message: "Termin musi być późniejszy niż dzisiaj",
               },
-              value: new Date().toISOString().split("T")[0],
+              value: date.toISOString().split("T")[0],
             })}
           />
           <FormErrorMessage>
@@ -165,18 +168,6 @@ Protisty zdolne są do odbioru bodźców zewnętrznych oraz reagowania na nie. O
           Dodaj materiał
         </Button>
         <hr />
-        <Text as="p" textAlign="center" mt={4}>
-          Nie masz konta?{" "}
-          <Link
-            to="/#"
-            style={{
-              color: "#3182CE",
-              fontWeight: "bold",
-            }}
-          >
-            Zarejestruj się
-          </Link>
-        </Text>
       </form>
     </Box>
   );

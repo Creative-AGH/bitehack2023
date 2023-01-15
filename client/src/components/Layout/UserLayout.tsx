@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-
 import { ReactNode } from "react";
 import {
   Box,
@@ -19,8 +18,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-
-const isLoggedIn = true;
+import logo from "../../assets/logo.png";
 
 const LinksWithUser = [
   {
@@ -28,11 +26,15 @@ const LinksWithUser = [
     path: "/plans",
   },
   {
-    name: "Dodaj zasób",
-    path: "/add",
+    name: "Forum",
+    path: "#",
   },
   {
-    name: "Czat",
+    name: "Promuj się",
+    path: "#",
+  },
+  {
+    name: "Dotychczasowe zadania",
     path: "/chat",
   },
 ];
@@ -78,7 +80,9 @@ const Content = ({ children, isInCenter }: IContent) => {
           />
           <HStack spacing={8} alignItems={"center"}>
             <Box>
-              <Link href={"/"}>Logo</Link>
+              <Link href={"/"}>
+                <img src={logo} width="30px" aria-label="Strona główna" />
+              </Link>
             </Box>
             <HStack
               as={"nav"}

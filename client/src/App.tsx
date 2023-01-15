@@ -5,6 +5,7 @@ import AddPlan from "./views/AddPlan/AddPlan";
 import ViewPlans from "./views/ViewPlans/ViewPlans";
 import Chat from "./views/Chat/Chat";
 import { ChakraProvider } from "@chakra-ui/react";
+import TaskList from "./views/TaskList/TaskList";
 
 function App() {
   const router = createBrowserRouter([
@@ -14,6 +15,7 @@ function App() {
       children: [
         { path: "/", element: <LandingPage /> },
         { path: "add", element: <AddPlan /> },
+        { path: "plan/:id", element: <TaskList /> },
         { path: "chat", element: <Chat /> },
       ],
     },

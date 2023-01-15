@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import styles from "./LandingPage.module.scss";
 import Slide from "../../components/Slide/Slide";
 import Button from "../../components/Button/Button";
 

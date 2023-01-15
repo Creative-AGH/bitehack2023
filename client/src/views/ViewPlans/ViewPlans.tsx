@@ -2,6 +2,9 @@ import { Grid, GridItem, Heading, Progress } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import icon from "../../assets/icons/BiAlarmExclamation.png";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { API_URL } from "../../constants";
 
 export interface IPlanContainer {
   name: string;
@@ -9,27 +12,6 @@ export interface IPlanContainer {
   progress: number;
   id: number;
 }
-
-const plans = [
-  {
-    name: "Plan 1",
-    deadline: "2021-12-12",
-    progress: 81,
-    id: 1,
-  },
-  {
-    name: "Plan 2",
-    deadline: "2021-12-12",
-    progress: 50,
-    id: 2,
-  },
-  {
-    name: "Plan 3",
-    deadline: "2021-12-12",
-    progress: 20,
-    id: 3,
-  },
-];
 
 const PlanContainer = ({ name, deadline, progress, id }: IPlanContainer) => {
   const navigate = useNavigate();
@@ -109,6 +91,15 @@ const AddPlaceDotted = () => {
 };
 
 const ViewPlans = () => {
+  const [plans, setPlans] = useState<any>([]);
+
+  useEffect(() => {
+    axios.get(`${API_URL}plan/getAllPlans`).then((res) => {
+      console.log(res.data);
+      setPlans(res.data);
+    });
+  }, []);
+
   return (
     <Grid
       templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
@@ -117,8 +108,8 @@ const ViewPlans = () => {
       paddingInline={10}
     >
       <AddPlaceDotted />
-      {plans.map((plan) => (
-        <PlanContainer {...plan} />
+      {plans.map((plan: any) => (
+        <PlanContainer {...plan} key={plan.id} />
       ))}
     </Grid>
   );
