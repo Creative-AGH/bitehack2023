@@ -15,9 +15,9 @@ services:
     build:
       context: ./server/
     ports:
-      - '8085:8080'
+      - '8080:8080'
     expose:
-      - '8085'
+      - '8080'
     restart: always
    # depends_on:
     #    - database-mysql
