@@ -27,7 +27,7 @@ public interface PlanMapper {
             taskDto.setDescription(tasks.get(i).getDescription());
             taskDto.setTaskDateTime(tasks.get(i).getTaskDateTime());
             taskDto.setPromptContext(tasks.get(i).getPromptContext());
-            taskDto.setQuestion(tasks.get(i).getQuestion());
+            taskDto.setSentence(tasks.get(i).getSentence());
             taskDtos.add(taskDto);
         }
         return taskDtos;

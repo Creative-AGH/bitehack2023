@@ -1,6 +1,7 @@
 package com.freecoders.server.entites;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ public class Task {
     private Long id;
     private String name;
     private String description;
+    private String sentence;
     private LocalDateTime taskDateTime;
     String promptContext;
     String question;

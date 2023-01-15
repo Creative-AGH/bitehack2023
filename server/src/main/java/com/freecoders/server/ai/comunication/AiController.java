@@ -42,8 +42,9 @@ public class AiController {
         List<CompletionChoice> choiceList = aiService.divideInToSmallerTasks(promptWithEstimatedLearningTime.getPrompt());
         choiceList.forEach(System.out::println);
 
-        String[] singleResponseTable = choiceList.stream().findFirst().map(CompletionChoice::getText)
-                .orElse("Niestety nie potrafię pomóc").split("[0-9]+\\.");
+        String textFromChat = choiceList.stream().findFirst().map(CompletionChoice::getText)
+                .orElse("Niestety nie potrafię pomóc");
+        String[] singleResponseTable = textFromChat.split("[0-9]+\\.");
 
         System.out.println("-----------------");
 //                .map(CompletionChoice::toString).findFirst().orElse("No response");
@@ -63,13 +64,22 @@ public class AiController {
             task.setPromptContext(promptWithEstimatedLearningTime.getPrompt());
             task.setTaskDateTime(localDateTimes.get(i)); // here we get the date and time for each task
             tasks.add(task);
+//            task.setTextFromChat(textFromChat);
             System.out.println(singleResponseTable[i]);
+            task.setQuestion(aiService.changeTaskSentenceToQuestion(task).get(0).getText().split("~~~~")[1]);
             taskRepository.save(task);
+            System.out.println(task.getQuestion());
+
         }
+
         plan.setTasks(tasks);
         adminAccount.getPlan().add(plan);
         Plan savedPlan = planRepository.save(plan);
         Account save = accountRepository.save(adminAccount);
+        System.out.println(
+                "Plan saved with id: " + savedPlan.getId() + " and " + savedPlan.getTasks().size() + " tasks");
+
+
         return ResponseEntity.ok(planMapper.mapPlanToPlanDto(savedPlan));
     }
 

@@ -13,5 +13,6 @@ public class TaskDto {
     private  String description;
     private  LocalDateTime taskDateTime;
     private  String promptContext;
-    private  String question;
+    private  String sentence;
+    private String  question;
 }
